@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package message.common;
+
+option go_package = "github.com/becosuke/tasks-api/protogen/message/common";
+
+message Id {
+  uint64 id = 1;
+}
+
+message Ids {
+  repeated uint64 ids = 1;
+}

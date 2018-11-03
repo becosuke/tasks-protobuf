@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package message.list;
+
+option go_package = "github.com/becosuke/tasks-api/protogen/message/list";
+
+message List {
+  uint64 id = 1;
+  string title = 2;
+}

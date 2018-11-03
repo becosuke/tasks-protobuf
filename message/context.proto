@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package message.context;
+
+option go_package = "github.com/becosuke/tasks-api/protogen/message/context";
+
+message Context {
+  uint64 id = 1;
+  string title = 2;
+}

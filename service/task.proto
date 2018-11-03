@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package service.task;
+
+import "google/api/annotations.proto";
+import "message/task.proto";
+import "message/common.proto";
+
+option go_package = "github.com/becosuke/tasks-api/protogen/message/task";
+
+service Task {
+  rpc GetTask(.message.common.Id) returns (.message.task.Task) {
+    option (google.api.http) = {
+      get: "/v1/task/{id}"
+    };
+  }
+}

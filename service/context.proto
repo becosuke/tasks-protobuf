@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package service.context;
+
+import "google/api/annotations.proto";
+import "message/context.proto";
+import "message/common.proto";
+
+option go_package = "github.com/becosuke/tasks-api/protogen/message/context";
+
+service Context {
+  rpc GetContext(.message.common.Id) returns (.message.context.Context) {
+    option (google.api.http) = {
+      get: "/v1/context/{id}"
+    };
+  }
+}
