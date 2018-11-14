@@ -2,14 +2,14 @@ syntax = "proto3";
 
 package service.list;
 
+option go_package = "github.com/becosuke/tasks-api/protogen/service/list";
+
 import "google/api/annotations.proto";
 import "message/list.proto";
 import "message/common.proto";
 
-option go_package = "github.com/becosuke/tasks-api/protogen/message/list";
-
 service List {
-  rpc GetList(.message.common.Id) returns (.message.list.List) {
+  rpc GetListDocument(.message.common.Id) returns (.message.list.Document) {
     option (google.api.http) = {
       get: "/v1/list/{id}"
     };

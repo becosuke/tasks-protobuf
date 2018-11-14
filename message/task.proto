@@ -4,7 +4,14 @@ package message.task;
 
 option go_package = "github.com/becosuke/tasks-api/protogen/message/task";
 
-message Task {
+message Document {
   uint64 id = 1;
   string title = 2;
+
+  int64 created_at = 1001;
+  int64 updated_at = 1002;
+  int64 deleted_at = 1003;
+  int64 completed_at = 1004;
+  bool deleted = 1101;
+  bool completed = 1102;
 }

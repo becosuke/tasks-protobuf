@@ -4,7 +4,12 @@ package message.list;
 
 option go_package = "github.com/becosuke/tasks-api/protogen/message/list";
 
-message List {
+message Document {
   uint64 id = 1;
   string title = 2;
+
+  int64 created_at = 1001;
+  int64 updated_at = 1002;
+  int64 deleted_at = 1003;
+  bool deleted = 1101;
 }
