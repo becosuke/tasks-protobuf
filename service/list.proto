@@ -9,9 +9,24 @@ import "message/list.proto";
 import "message/common.proto";
 
 service List {
-  rpc GetListDocument(.message.common.Id) returns (.message.list.Document) {
+  rpc GetDocument(.message.common.Id) returns (.message.list.Document) {
     option (google.api.http) = {
       get: "/v1/list/{id}"
+    };
+  }
+  rpc GetDocuments(.message.common.Ids) returns (stream .message.list.Document) {
+    option (google.api.http) = {
+      get: "/v1/lists/document/{ids}"
+    };
+  }
+  rpc GetDocumentsAll (.message.common.Pagination) returns (stream .message.list.Document) {
+    option (google.api.http) = {
+      get: "/v1/lists/all"
+    };
+  }
+  rpc GetCountAll (.message.common.Empty) returns (.message.common.Count) {
+    option (google.api.http) = {
+      get: "/v1/lists/all/count"
     };
   }
 }

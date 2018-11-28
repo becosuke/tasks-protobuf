@@ -9,9 +9,24 @@ import "message/context.proto";
 import "message/common.proto";
 
 service Context {
-  rpc GetContextDocument(.message.common.Id) returns (.message.context.Document) {
+  rpc GetDocument(.message.common.Id) returns (.message.context.Document) {
     option (google.api.http) = {
       get: "/v1/context/{id}"
+    };
+  }
+  rpc GetDocuments(.message.common.Ids) returns (stream .message.context.Document) {
+    option (google.api.http) = {
+      get: "/v1/contexts/document/{ids}"
+    };
+  }
+  rpc GetDocumentsAll (.message.common.Pagination) returns (stream .message.context.Document) {
+    option (google.api.http) = {
+      get: "/v2/contexts/all"
+    };
+  }
+  rpc GetCountAll (.message.common.Empty) returns (.message.common.Count) {
+    option (google.api.http) = {
+      get: "/v2/contexts/all/count"
     };
   }
 }

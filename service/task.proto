@@ -9,9 +9,24 @@ import "message/task.proto";
 import "message/common.proto";
 
 service Task {
-  rpc GetTaskDocument(.message.common.Id) returns (.message.task.Document) {
+  rpc GetDocument(.message.common.Id) returns (.message.task.Document) {
     option (google.api.http) = {
       get: "/v1/task/{id}"
+    };
+  }
+  rpc GetDocuments(.message.common.Ids) returns (stream .message.task.Document) {
+    option (google.api.http) = {
+      get: "/v1/tasks/document/{ids}"
+    };
+  }
+  rpc GetDocumentsAll (.message.common.Pagination) returns (stream .message.task.Document) {
+    option (google.api.http) = {
+      get: "/v2/tasks/all"
+    };
+  }
+  rpc GetCountAll (.message.common.Empty) returns (.message.common.Count) {
+    option (google.api.http) = {
+      get: "/v2/tasks/all/count"
     };
   }
 }
