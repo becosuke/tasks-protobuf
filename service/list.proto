@@ -9,6 +9,23 @@ import "message/list.proto";
 import "message/common.proto";
 
 service List {
+  rpc Create (.message.list.CreateRequest) returns (.message.list.Document) {
+    option (google.api.http) = {
+      post: "/v1/list"
+      body: "*"
+    };
+  }
+  rpc Update (.message.list.UpdateRequest) returns (.message.list.Document) {
+    option (google.api.http) = {
+      put: "/v1/list/{id}"
+      body: "*"
+    };
+  }
+  rpc Delete (.message.list.DeleteRequest) returns (.message.list.Document) {
+    option (google.api.http) = {
+      delete: "/v1/list/{id}"
+    };
+  }
   rpc GetDocument(.message.common.Id) returns (.message.list.Document) {
     option (google.api.http) = {
       get: "/v1/list/{id}"
@@ -27,23 +44,6 @@ service List {
   rpc GetCountAll (.message.common.Empty) returns (.message.common.Count) {
     option (google.api.http) = {
       get: "/v1/lists/all/count"
-    };
-  }
-  rpc Create (.message.list.CreateRequest) returns (.message.list.Document) {
-    option (google.api.http) = {
-      post: "/v1/list"
-      body: "*"
-    };
-  }
-  rpc Update (.message.list.UpdateRequest) returns (.message.list.Document) {
-    option (google.api.http) = {
-      put: "/v1/list/{id}"
-      body: "*"
-    };
-  }
-  rpc Delete (.message.list.DeleteRequest) returns (.message.list.Document) {
-    option (google.api.http) = {
-      delete: "/v1/list/{id}"
     };
   }
 }

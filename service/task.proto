@@ -9,37 +9,6 @@ import "message/task.proto";
 import "message/common.proto";
 
 service Task {
-  rpc GetDocument(.message.common.Id) returns (.message.task.Document) {
-    option (google.api.http) = {
-      get: "/v1/task/{id}"
-    };
-  }
-  rpc GetDocuments(.message.common.Ids) returns (stream .message.task.Document) {
-    option (google.api.http) = {
-      get: "/v1/tasks/document/{ids}"
-    };
-  }
-  rpc GetDocumentsAll (.message.common.Pagination) returns (stream .message.task.Document) {
-    option (google.api.http) = {
-      get: "/v2/tasks/all"
-    };
-  }
-  rpc GetCountAll (.message.common.Empty) returns (.message.common.Count) {
-    option (google.api.http) = {
-      get: "/v2/tasks/all/count"
-    };
-  }
-/*
-  rpc GetDocumentsByList (.message.common.IdPagination) returns (stream .message.task.Document) {
-    option (google.api.http) = {
-      get: "/v2/tasks/list/{id}"
-    };
-  }
-  rpc GetCountByList (.message.common.Id) returns (.message.common.Count) {
-    option (google.api.http) = {
-      get: "/v2/tasks/list/{id}/count"
-    };
-  }
   rpc Create (.message.task.CreateRequest) returns (.message.task.Document) {
     option (google.api.http) = {
       post: "/v1/task"
@@ -54,9 +23,37 @@ service Task {
   }
   rpc Delete (.message.task.DeleteRequest) returns (.message.task.Document) {
     option (google.api.http) = {
-      post: "/v1/task/{id}"
-      body: "*"
+      delete: "/v1/task/{id}"
     };
   }
-*/
+  rpc GetDocument(.message.common.Id) returns (.message.task.Document) {
+    option (google.api.http) = {
+      get: "/v1/task/{id}"
+    };
+  }
+  rpc GetDocuments(.message.common.Ids) returns (stream .message.task.Document) {
+    option (google.api.http) = {
+      get: "/v1/tasks/document/{ids}"
+    };
+  }
+  rpc GetDocumentsAll (.message.common.Pagination) returns (stream .message.task.Document) {
+    option (google.api.http) = {
+      get: "/v1/tasks/all"
+    };
+  }
+  rpc GetCountAll (.message.common.Empty) returns (.message.common.Count) {
+    option (google.api.http) = {
+      get: "/v1/tasks/all/count"
+    };
+  }
+  rpc GetDocumentsByList (.message.common.IdPagination) returns (stream .message.task.Document) {
+    option (google.api.http) = {
+      get: "/v1/tasks/list/{id}"
+    };
+  }
+  rpc GetCountByList (.message.common.Id) returns (.message.common.Count) {
+    option (google.api.http) = {
+      get: "/v1/tasks/list/{id}/count"
+    };
+  }
 }
