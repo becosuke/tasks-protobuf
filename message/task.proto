@@ -6,14 +6,27 @@ option go_package = "github.com/becosuke/tasks-api/protogen/message/task";
 
 message Document {
   uint64 id = 1;
-  string title = 2;
+  uint64 list_id = 2;
+  string title = 3;
+  bool completed = 4;
 
-  int64 created_at = 1001;
-  int64 updated_at = 1002;
-  int64 deleted_at = 1003;
-  int64 completed_at = 1004;
-  bool enabled = 1101;
-  bool updated = 1102;
-  bool deleted = 1103;
-  bool completed = 1104;
+  bool enabled = 8001;
+  int64 created_at = 8002;
+  int64 updated_at = 8003;
+  int64 deleted_at = 8004;
+}
+
+message CreateRequest {
+  uint64 list_id = 1;
+  string title = 2;
+}
+
+message UpdateRequest {
+  uint64 id = 1;
+  uint64 list_id = 2;
+  string title = 3;
+}
+
+message DeleteRequest {
+  uint64 id = 1;
 }

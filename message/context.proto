@@ -8,10 +8,8 @@ message Document {
   uint64 id = 1;
   string title = 2;
 
-  int64 created_at = 8001;
-  int64 updated_at = 8002;
-  int64 deleted_at = 8003;
-  bool enabled = 8101;
-  bool updated = 8102;
-  bool deleted = 8103;
+  bool enabled = 8001;
+  int64 created_at = 8002;
+  int64 updated_at = 8003;
+  int64 deleted_at = 8004;
 }

@@ -30,7 +30,6 @@ message Count {
   uint64 count = 1;
 }
 
-message Coordinate {
-  double vertical = 1;
-  double horizontal = 2;
+message Result {
+  bool result = 1;
 }

@@ -29,4 +29,34 @@ service Task {
       get: "/v2/tasks/all/count"
     };
   }
+/*
+  rpc GetDocumentsByList (.message.common.IdPagination) returns (stream .message.task.Document) {
+    option (google.api.http) = {
+      get: "/v2/tasks/list/{id}"
+    };
+  }
+  rpc GetCountByList (.message.common.Id) returns (.message.common.Count) {
+    option (google.api.http) = {
+      get: "/v2/tasks/list/{id}/count"
+    };
+  }
+  rpc Create (.message.task.CreateRequest) returns (.message.task.Document) {
+    option (google.api.http) = {
+      post: "/v1/task"
+      body: "*"
+    };
+  }
+  rpc Update (.message.task.UpdateRequest) returns (.message.task.Document) {
+    option (google.api.http) = {
+      put: "/v1/task/{id}"
+      body: "*"
+    };
+  }
+  rpc Delete (.message.task.DeleteRequest) returns (.message.task.Document) {
+    option (google.api.http) = {
+      post: "/v1/task/{id}"
+      body: "*"
+    };
+  }
+*/
 }
