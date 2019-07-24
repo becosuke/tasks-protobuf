@@ -15,18 +15,3 @@ message Document {
   int64 updated_at = 8003;
   int64 deleted_at = 8004;
 }
-
-message CreateRequest {
-  uint64 list_id = 1;
-  string title = 2;
-}
-
-message UpdateRequest {
-  uint64 id = 1;
-  uint64 list_id = 2;
-  string title = 3;
-}
-
-message DeleteRequest {
-  uint64 id = 1;
-}
