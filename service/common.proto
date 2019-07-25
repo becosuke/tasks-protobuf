@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package service.common;
+
+option go_package = "github.com/becosuke/tasks-api/protogen/service/common";
+
+import "google/api/annotations.proto";
+
+service Common {
+  rpc Ping (PingRequest) returns (PingResponse) {
+    option (google.api.http) = {
+      get: "/v1/common/ping"
+    };
+  }
+}
+
+message PingRequest {
+}
+
+message PingResponse {
+}
