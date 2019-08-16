@@ -7,92 +7,42 @@ option go_package = "github.com/becosuke/tasks-api/protogen/service/context";
 import "google/api/annotations.proto";
 import "message/context.proto";
 
-service Context {
-  rpc Create (CreateRequest) returns (CreateResponse) {
+service context {
+  rpc Create (.message.context.CreateRequest) returns (.message.context.CreateResponse) {
     option (google.api.http) = {
       post: "/v1/context"
       body: "*"
     };
   }
-  rpc Update (UpdateRequest) returns (UpdateResponse) {
+  rpc Update (.message.context.UpdateRequest) returns (.message.context.UpdateResponse) {
     option (google.api.http) = {
       put: "/v1/context/{id}"
       body: "*"
     };
   }
-  rpc Delete (DeleteRequest) returns (DeleteResponse) {
+  rpc Delete (.message.context.DeleteRequest) returns (.message.context.DeleteResponse) {
     option (google.api.http) = {
       delete: "/v1/context/{id}"
     };
   }
-  rpc GetDocument(GetDocumentRequest) returns (GetDocumentResponse) {
+  rpc GetDocument(.message.context.GetDocumentRequest) returns (.message.context.GetDocumentResponse) {
     option (google.api.http) = {
       get: "/v1/context/{id}"
     };
   }
-  rpc GetDocuments(GetDocumentsRequest) returns (GetDocumentsResponse) {
+  rpc GetDocuments(.message.context.GetDocumentsRequest) returns (.message.context.GetDocumentsResponse) {
     option (google.api.http) = {
       get: "/v1/contexts/document/{ids}"
     };
   }
-  rpc GetDocumentsAll (GetDocumentsAllRequest) returns (GetDocumentsAllResponse) {
+  rpc GetDocumentsAll (.message.context.GetDocumentsAllRequest) returns (.message.context.GetDocumentsAllResponse) {
     option (google.api.http) = {
       get: "/v1/contexts/all"
     };
   }
-  rpc GetCountAll (GetCountAllRequest) returns (GetCountAllResponse) {
+  rpc GetCountAll (.message.context.GetCountAllRequest) returns (.message.context.GetCountAllResponse) {
     option (google.api.http) = {
       get: "/v1/contexts/all/count"
     };
   }
-}
-
-message CreateRequest {
-  string title = 1;
-}
-message CreateResponse {
-  .message.context.Document document = 1;
-}
-
-message UpdateRequest {
-  uint64 id = 1;
-  string title = 2;
-}
-message UpdateResponse {
-  .message.context.Document document = 1;
-}
-
-message DeleteRequest {
-  uint64 id = 1;
-}
-message DeleteResponse {
-  .message.context.Document document = 1;
-}
-
-message GetDocumentRequest {
-  uint64 id = 1;
-}
-message GetDocumentResponse {
-  .message.context.Document document = 1;
-}
-
-message GetDocumentsRequest {
-  repeated uint64 ids = 1;
-}
-message GetDocumentsResponse {
-  repeated .message.context.Document documents = 1;
-}
-
-message GetDocumentsAllRequest {
-  int32 limit = 1;
-  int32 offset = 2;
-}
-message GetDocumentsAllResponse {
-  repeated .message.context.Document documents = 1;
-}
-
-message GetCountAllRequest {
-}
-message GetCountAllResponse {
-  uint64 count = 1;
 }

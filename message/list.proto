@@ -4,6 +4,9 @@ package message.list;
 
 option go_package = "github.com/becosuke/tasks-api/protogen/message/list";
 
+import "github.com/mwitkow/go-proto-validators/validator.proto";
+import "message/common.proto";
+
 message Document {
   uint64 id = 1;
   string title = 2;
@@ -12,4 +15,64 @@ message Document {
   int64 created_at = 8002;
   int64 updated_at = 8003;
   int64 deleted_at = 8004;
+}
+
+message CreateRequest {
+  string title = 1 [(validator.field) = {string_not_empty: true}];
+}
+
+message CreateResponse {
+  bool result = 1;
+  Document document = 2;
+}
+
+message UpdateRequest {
+  uint64 id = 1 [(validator.field) = {int_gt: 0}];
+  string title = 2;
+}
+
+message UpdateResponse {
+  bool result = 1;
+  Document document = 2;
+}
+
+message DeleteRequest {
+  uint64 id = 1 [(validator.field) = {int_gt: 0}];
+}
+
+message DeleteResponse {
+  bool result = 1;
+  Document document = 2;
+}
+
+message GetDocumentRequest {
+  uint64 id = 1;
+}
+
+message GetDocumentResponse {
+  Document document = 1;
+}
+
+message GetDocumentsRequest {
+  repeated uint64 ids = 1;
+}
+
+message GetDocumentsResponse {
+  repeated Document documents = 1;
+}
+
+message GetDocumentsAllRequest {
+  uint32 limit = 1 [(validator.field) = {int_lt: 1000}];
+  uint32 offset = 2;
+}
+
+message GetDocumentsAllResponse {
+  repeated Document documents = 1;
+}
+
+message GetCountAllRequest {
+}
+
+message GetCountAllResponse {
+  .message.common.Count count = 1;
 }

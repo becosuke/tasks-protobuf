@@ -8,149 +8,61 @@ import "google/api/annotations.proto";
 import "message/task.proto";
 
 service Task {
-  rpc Create (CreateRequest) returns (CreateResponse) {
+  rpc Create (.message.task.CreateRequest) returns (.message.task.CreateResponse) {
     option (google.api.http) = {
       post: "/v1/task"
       body: "*"
     };
   }
-  rpc Update (UpdateRequest) returns (UpdateResponse) {
+  rpc Update (.message.task.UpdateRequest) returns (.message.task.UpdateResponse) {
     option (google.api.http) = {
       put: "/v1/task/{id}"
       body: "*"
     };
   }
-  rpc Delete (DeleteRequest) returns (DeleteResponse) {
+  rpc Delete (.message.task.DeleteRequest) returns (.message.task.DeleteResponse) {
     option (google.api.http) = {
       delete: "/v1/task/{id}"
     };
   }
-  rpc GetDocument(GetDocumentRequest) returns (GetDocumentResponse) {
+  rpc GetDocument(.message.task.GetDocumentRequest) returns (.message.task.GetDocumentResponse) {
     option (google.api.http) = {
       get: "/v1/task/{id}"
     };
   }
-  rpc GetDocuments(GetDocumentsRequest) returns (GetDocumentsResponse) {
+  rpc GetDocuments(.message.task.GetDocumentsRequest) returns (.message.task.GetDocumentsResponse) {
     option (google.api.http) = {
       get: "/v1/tasks/document/{ids}"
     };
   }
-  rpc GetDocumentsAll (GetDocumentsAllRequest) returns (GetDocumentsAllResponse) {
+  rpc GetDocumentsAll (.message.task.GetDocumentsAllRequest) returns (.message.task.GetDocumentsAllResponse) {
     option (google.api.http) = {
       get: "/v1/tasks/all"
     };
   }
-  rpc GetCountAll (GetCountAllRequest) returns (GetCountAllResponse) {
+  rpc GetCountAll (.message.task.GetCountAllRequest) returns (.message.task.GetCountAllResponse) {
     option (google.api.http) = {
       get: "/v1/tasks/all/count"
     };
   }
-  rpc GetDocumentsByList (GetDocumentsByListRequest) returns (GetDocumentsByListResponse) {
+  rpc GetDocumentsByList (.message.task.GetDocumentsByListRequest) returns (.message.task.GetDocumentsByListResponse) {
     option (google.api.http) = {
       get: "/v1/tasks/list/{list_id}"
     };
   }
-  rpc GetCountByList (GetCountByListRequest) returns (GetCountByListResponse) {
+  rpc GetCountByList (.message.task.GetCountByListRequest) returns (.message.task.GetCountByListResponse) {
     option (google.api.http) = {
       get: "/v1/tasks/list/{list_id}/count"
     };
   }
-  rpc GetDocumentsByListAndContexts (GetDocumentsByListAndContextsRequest) returns (GetDocumentsByListAndContextsResponse) {
+  rpc GetDocumentsByListAndContexts (.message.task.GetDocumentsByListAndContextsRequest) returns (.message.task.GetDocumentsByListAndContextsResponse) {
     option (google.api.http) = {
       get: "/v1/tasks/list/{list_id}/contexts/{context_ids}"
     };
   }
-  rpc GetCountByListAndContexts (GetCountByListAndContextsRequest) returns (GetCountByListAndContextsResponse) {
+  rpc GetCountByListAndContexts (.message.task.GetCountByListAndContextsRequest) returns (.message.task.GetCountByListAndContextsResponse) {
     option (google.api.http) = {
       get: "/v1/tasks/list/{list_id}/contexts/{context_ids}/count"
     };
   }
-}
-
-message CreateRequest {
-  uint64 list_id = 1;
-  string title = 2;
-}
-message CreateResponse {
-  .message.task.Document document = 1;
-}
-
-message UpdateRequest {
-  uint64 id = 1;
-  uint64 list_id = 2;
-  string title = 3;
-}
-message UpdateResponse {
-  .message.task.Document document = 1;
-}
-
-message DeleteRequest {
-  uint64 id = 1;
-}
-message DeleteResponse {
-  .message.task.Document document = 1;
-}
-
-message GetDocumentRequest {
-  uint64 id = 1;
-}
-message GetDocumentResponse {
-  .message.task.Document document = 1;
-}
-
-message GetDocumentsRequest {
-  repeated uint64 ids = 1;
-}
-message GetDocumentsResponse {
-  repeated .message.task.Document documents = 1;
-}
-
-message GetDocumentsAllRequest {
-  int32 limit = 1;
-  int32 offset = 2;
-}
-message GetDocumentsAllResponse {
-  repeated .message.task.Document documents = 1;
-}
-
-message GetCountAllRequest {
-}
-message GetCountAllResponse {
-  uint64 count = 1;
-}
-
-message GetDocumentsByListRequest {
-  uint64 list_id = 1;
-  int32 limit = 2;
-  int32 offset = 3;
-}
-message GetDocumentsByListResponse {
-  repeated .message.task.Document documents = 1;
-}
-
-message GetCountByListRequest {
-  uint64 list_id = 1;
-}
-message GetCountByListResponse {
-  uint64 count = 1;
-}
-
-message GetDocumentsByListAndContextsRequest {
-  uint64 list_id = 1;
-  repeated uint64 context_ids = 2;
-  int32 limit = 3;
-  int32 offset = 4;
-}
-message GetDocumentsByListAndContextsResponse {
-  repeated .message.task.Document documents = 1;
-}
-
-message GetCountByListAndContextsRequest {
-  uint64 list_id = 1;
-  repeated uint64 context_ids = 2;
-  int32 limit = 3;
-  int32 offset = 4;
-}
-message GetCountByListAndContextsResponse {
-  uint64 count = 1;
 }

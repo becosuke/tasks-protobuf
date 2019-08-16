@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package message.common;
+
+option go_package = "github.com/becosuke/tasks-api/protogen/message/common";
+
+message PingRequest {
+}
+
+message PingResponse {
+}
+
+message Count {
+  uint64 count = 1;
+
+  bool enabled = 8001;
+}

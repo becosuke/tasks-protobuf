@@ -8,91 +8,41 @@ import "google/api/annotations.proto";
 import "message/list.proto";
 
 service List {
-  rpc Create (CreateRequest) returns (CreateResponse) {
+  rpc Create (.message.list.CreateRequest) returns (.message.list.CreateResponse) {
     option (google.api.http) = {
       post: "/v1/list"
       body: "*"
     };
   }
-  rpc Update (UpdateRequest) returns (UpdateResponse) {
+  rpc Update (.message.list.UpdateRequest) returns (.message.list.UpdateResponse) {
     option (google.api.http) = {
       put: "/v1/list/{id}"
       body: "*"
     };
   }
-  rpc Delete (DeleteRequest) returns (DeleteResponse) {
+  rpc Delete (.message.list.DeleteRequest) returns (.message.list.DeleteResponse) {
     option (google.api.http) = {
       delete: "/v1/list/{id}"
     };
   }
-  rpc GetDocument(GetDocumentRequest) returns (GetDocumentResponse) {
+  rpc GetDocument (.message.list.GetDocumentRequest) returns (.message.list.GetDocumentResponse) {
     option (google.api.http) = {
       get: "/v1/list/{id}"
     };
   }
-  rpc GetDocuments(GetDocumentsRequest) returns (GetDocumentsResponse) {
+  rpc GetDocuments (.message.list.GetDocumentsRequest) returns (.message.list.GetDocumentsResponse) {
     option (google.api.http) = {
       get: "/v1/lists/document/{ids}"
     };
   }
-  rpc GetDocumentsAll (GetDocumentsAllRequest) returns (GetDocumentsAllResponse) {
+  rpc GetDocumentsAll (.message.list.GetDocumentsAllRequest) returns (.message.list.GetDocumentsAllResponse) {
     option (google.api.http) = {
       get: "/v1/lists/all"
     };
   }
-  rpc GetCountAll (GetCountAllRequest) returns (GetCountAllResponse) {
+  rpc GetCountAll (.message.list.GetCountAllRequest) returns (.message.list.GetCountAllResponse) {
     option (google.api.http) = {
       get: "/v1/lists/all/count"
     };
   }
-}
-
-message CreateRequest {
-  string title = 1;
-}
-message CreateResponse {
-  .message.list.Document document = 1;
-}
-
-message UpdateRequest {
-  uint64 id = 1;
-  string title = 2;
-}
-message UpdateResponse {
-  .message.list.Document document = 1;
-}
-
-message DeleteRequest {
-  uint64 id = 1;
-}
-message DeleteResponse {
-  .message.list.Document document = 1;
-}
-
-message GetDocumentRequest {
-  uint64 id = 1;
-}
-message GetDocumentResponse {
-  .message.list.Document document = 1;
-}
-
-message GetDocumentsRequest {
-  repeated uint64 ids = 1;
-}
-message GetDocumentsResponse {
-  repeated .message.list.Document documents = 1;
-}
-
-message GetDocumentsAllRequest {
-  int32 limit = 1;
-  int32 offset = 2;
-}
-message GetDocumentsAllResponse {
-  repeated .message.list.Document documents = 1;
-}
-
-message GetCountAllRequest {
-}
-message GetCountAllResponse {
-  uint64 count = 1;
 }
