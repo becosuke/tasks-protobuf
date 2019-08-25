@@ -4,6 +4,9 @@ package message.task;
 
 option go_package = "github.com/becosuke/tasks-api/protogen/message/task";
 
+import "github.com/mwitkow/go-proto-validators/validator.proto";
+import "message/common.proto";
+
 message Document {
   uint64 id = 1;
   uint64 list_id = 2;
@@ -17,8 +20,8 @@ message Document {
 }
 
 message CreateRequest {
-  uint64 list_id = 1;
-  string title = 2;
+  uint64 list_id = 1 [(validator.field) = {int_gt: 0}];
+  string title = 2 [(validator.field) = {string_not_empty: true}];
 }
 
 message CreateResponse {
@@ -26,9 +29,9 @@ message CreateResponse {
 }
 
 message UpdateRequest {
-  uint64 id = 1;
-  uint64 list_id = 2;
-  string title = 3;
+  uint64 id = 1 [(validator.field) = {int_gt: 0}];
+  uint64 list_id = 2 [(validator.field) = {int_gt: 0}];
+  string title = 3 [(validator.field) = {string_not_empty: true}];
 }
 
 message UpdateResponse {
@@ -36,7 +39,7 @@ message UpdateResponse {
 }
 
 message DeleteRequest {
-  uint64 id = 1;
+  uint64 id = 1 [(validator.field) = {int_gt: 0}];
 }
 
 message DeleteResponse {
@@ -60,8 +63,8 @@ message GetDocumentsResponse {
 }
 
 message GetDocumentsAllRequest {
-  int32 limit = 1;
-  int32 offset = 2;
+  uint32 limit = 1 [(validator.field) = {int_lt: 100}];
+  uint32 offset = 2;
 }
 
 message GetDocumentsAllResponse {
@@ -72,13 +75,13 @@ message GetCountAllRequest {
 }
 
 message GetCountAllResponse {
-  uint64 count = 1;
+  .message.common.Count count = 1;
 }
 
 message GetDocumentsByListRequest {
   uint64 list_id = 1;
-  int32 limit = 2;
-  int32 offset = 3;
+  uint32 limit = 2 [(validator.field) = {int_lt: 100}];
+  uint32 offset = 3;
 }
 
 message GetDocumentsByListResponse {
@@ -90,14 +93,14 @@ message GetCountByListRequest {
 }
 
 message GetCountByListResponse {
-  uint64 count = 1;
+  .message.common.Count count = 1;
 }
 
 message GetDocumentsByListAndContextsRequest {
   uint64 list_id = 1;
   repeated uint64 context_ids = 2;
-  int32 limit = 3;
-  int32 offset = 4;
+  uint32 limit = 3 [(validator.field) = {int_lt: 100}];
+  uint32 offset = 4;
 }
 
 message GetDocumentsByListAndContextsResponse {
@@ -107,10 +110,8 @@ message GetDocumentsByListAndContextsResponse {
 message GetCountByListAndContextsRequest {
   uint64 list_id = 1;
   repeated uint64 context_ids = 2;
-  int32 limit = 3;
-  int32 offset = 4;
 }
 
 message GetCountByListAndContextsResponse {
-  uint64 count = 1;
+  .message.common.Count count = 1;
 }

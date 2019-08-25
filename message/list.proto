@@ -28,7 +28,7 @@ message CreateResponse {
 
 message UpdateRequest {
   uint64 id = 1 [(validator.field) = {int_gt: 0}];
-  string title = 2;
+  string title = 2 [(validator.field) = {string_not_empty: true}];
 }
 
 message UpdateResponse {
@@ -62,7 +62,7 @@ message GetDocumentsResponse {
 }
 
 message GetDocumentsAllRequest {
-  uint32 limit = 1 [(validator.field) = {int_lt: 1000}];
+  uint32 limit = 1 [(validator.field) = {int_lt: 100}];
   uint32 offset = 2;
 }
 

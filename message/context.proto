@@ -4,6 +4,9 @@ package message.context;
 
 option go_package = "github.com/becosuke/tasks-api/protogen/message/context";
 
+import "github.com/mwitkow/go-proto-validators/validator.proto";
+import "message/common.proto";
+
 message Document {
   uint64 id = 1;
   string title = 2;
@@ -15,7 +18,7 @@ message Document {
 }
 
 message CreateRequest {
-  string title = 1;
+  string title = 1 [(validator.field) = {string_not_empty: true}];
 }
 
 message CreateResponse {
@@ -23,8 +26,8 @@ message CreateResponse {
 }
 
 message UpdateRequest {
-  uint64 id = 1;
-  string title = 2;
+  uint64 id = 1 [(validator.field) = {int_gt: 0}];
+  string title = 2 [(validator.field) = {string_not_empty: true}];
 }
 
 message UpdateResponse {
@@ -32,7 +35,7 @@ message UpdateResponse {
 }
 
 message DeleteRequest {
-  uint64 id = 1;
+  uint64 id = 1 [(validator.field) = {int_gt: 0}];
 }
 
 message DeleteResponse {
@@ -56,7 +59,7 @@ message GetDocumentsResponse {
 }
 
 message GetDocumentsAllRequest {
-  int32 limit = 1;
+  int32 limit = 1 [(validator.field) = {int_lt: 100}];
   int32 offset = 2;
 }
 
@@ -68,5 +71,5 @@ message GetCountAllRequest {
 }
 
 message GetCountAllResponse {
-  uint64 count = 1;
+  .message.common.Count count = 1;
 }
