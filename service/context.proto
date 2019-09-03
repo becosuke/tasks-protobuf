@@ -25,12 +25,12 @@ service context {
       delete: "/v1/context/{id}"
     };
   }
-  rpc GetDocument(.message.context.GetDocumentRequest) returns (.message.context.GetDocumentResponse) {
+  rpc GetDocument (.message.context.GetDocumentRequest) returns (.message.context.GetDocumentResponse) {
     option (google.api.http) = {
       get: "/v1/context/{id}"
     };
   }
-  rpc GetDocuments(.message.context.GetDocumentsRequest) returns (.message.context.GetDocumentsResponse) {
+  rpc GetDocuments (.message.context.GetDocumentsRequest) returns (.message.context.GetDocumentsResponse) {
     option (google.api.http) = {
       get: "/v1/contexts/document/{ids}"
     };
