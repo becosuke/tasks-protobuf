@@ -25,7 +25,8 @@ message CreateRequest {
 }
 
 message CreateResponse {
-  .message.task.Document document = 1;
+  bool result = 1;
+  Document document = 2;
 }
 
 message UpdateRequest {
@@ -35,7 +36,8 @@ message UpdateRequest {
 }
 
 message UpdateResponse {
-  .message.task.Document document = 1;
+  bool result = 1;
+  Document document = 2;
 }
 
 message DeleteRequest {
@@ -43,7 +45,8 @@ message DeleteRequest {
 }
 
 message DeleteResponse {
-  .message.task.Document document = 1;
+  bool result = 1;
+  Document document = 2;
 }
 
 message GetDocumentRequest {
@@ -51,7 +54,7 @@ message GetDocumentRequest {
 }
 
 message GetDocumentResponse {
-  .message.task.Document document = 1;
+  Document document = 1;
 }
 
 message GetDocumentsRequest {
@@ -85,7 +88,7 @@ message GetDocumentsByListRequest {
 }
 
 message GetDocumentsByListResponse {
-  repeated .message.task.Document documents = 1;
+  repeated Document documents = 1;
 }
 
 message GetCountByListRequest {
@@ -104,7 +107,7 @@ message GetDocumentsByListAndContextsRequest {
 }
 
 message GetDocumentsByListAndContextsResponse {
-  repeated .message.task.Document documents = 1;
+  repeated Document documents = 1;
 }
 
 message GetCountByListAndContextsRequest {
